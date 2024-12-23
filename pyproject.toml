@@ -5,11 +5,15 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "vlcrc"
 dynamic = ["version"]
-authors = [{ name="Dolgii Evgenii" }]
+authors = [{ name="Dolgii Evgenii", email="e.v.dolgii@gmail.com" }]
 description = "A Python library for remote control of VLC media player via its RC interface."
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = ["vlc", "remote control", "remote", "rc", "cli", "vlc media player", "media player"]
+keywords = [
+    "vlc", "vlc media player", "media player", 
+    "remote control", "remote", "rc", "VLC RC", "VLC player remote",
+    "cli"
+]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -18,6 +22,7 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+license = {text = "MIT License"}
 
 [project.urls]
 Homepage = "https://github.com/evgenii-d/vlcrc"
@@ -25,3 +30,6 @@ Issues = "https://github.com/evgenii-d/vlcrc/issues"
 
 [tool.setuptools.dynamic]
 version = {file = "VERSION"}
+
+[project.scripts]
+vlcrc = "vlcrc.__main__:main"

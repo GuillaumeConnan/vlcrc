@@ -9,12 +9,12 @@ via its [Remote Control interface][1].
 - Playlist management: add, view, clear, repeat, loop, random.
 - Volume control: get and set the volume.
 - Audio device management: get and set the active audio device.
-- Command Line Interface (CLI).
+- Command Line Interface (CLI) support.
 
 ## Requirements
 
 - Python 3.10+
-- VLC media player with Remote Control (RC) interface enabled.
+- VLC media player with [Remote Control interface][1] enabled.
 
 ## Installation
 
@@ -36,15 +36,13 @@ Download the installer at <https://www.videolan.org/vlc/>
 | Windows | `vlc --extraintf rc --rc-host=HOST:PORT`                 |
 | Linux   | `vlc --extraintf oldrc --rc-fake-tty --rc-host=HOST:PORT`|
 
-**Note:** Make sure the specified port (e.g., `PORT`) is open and accessible
-in your firewall to allow remote control connections.
-
+**Note:** Ensure the specified port (e.g., `PORT`) is open in your firewall.
 For more details, refer to the [VLC command-line help][2].
 
-### 2. Import the library
+### 2. Install vlcrc
 
 ```bash
-pip install vlcrc
+python -m pip install vlcrc
 ```
 
 ## Usage
@@ -56,7 +54,7 @@ from pathlib import Path
 from vlcrc import VLCRemoteControl
 
 # Create a VLCRemoteControl instance
-vlc = VLCRemoteControl('127.0.0.1', 50000)
+vlc = VLCRemoteControl("127.0.0.1", 50000)
 
 # Add a file to the playlist
 vlc.add(Path("/path/to/media/file.mp4"))
@@ -105,7 +103,7 @@ vlc.set_adev(devices[0].id)
 ### Command Line Interface (CLI)
 
 ```txt
-usage: main.py [-h] host port {play,stop,next,prev,clear,status,pause,repeat,loop,random,playlist,quit,add,goto,volume,adev} ...
+usage: vlcrc [-h] [--timeout TIMEOUT] host port {play,stop,next,prev,clear,status,pause,repeat,loop,random,playlist,quit,add,goto,volume,adev} ...
 
 Command Line Interface for VLC Remote Control
 
@@ -133,6 +131,7 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
+  --timeout TIMEOUT     Connection timeout in seconds (default: 1.0)
 ```
 
 [1]:https://wiki.videolan.org/Documentation:Modules/rc
