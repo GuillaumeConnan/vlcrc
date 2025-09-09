@@ -179,8 +179,6 @@ class VLCRemoteControl:
             FileNotFoundError:
                 If the file does not exist or is a directory.
         """
-        if not file.exists() or file.is_dir():
-            raise FileNotFoundError(f"File '{file}' not found")
         self._send_command(f"add {file.as_uri()}")
 
     def playlist(self) -> list[str]:
